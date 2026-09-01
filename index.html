@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Anam 🎀</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    background:#24151d;
+    color:white;
+}
+
+/* BACKGROUND PHOTO */
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+
+    background-image:url("anam-bg.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    transform:scale(1.03);
+}
+
+/* DARK OVERLAY */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(30,10,25,.78),
+        rgba(80,25,55,.48),
+        rgba(20,8,20,.80)
+    );
+}
+
+
+/* =================================
+   SCREEN 1 — READY
+================================= */
+
+#readyScreen{
+
+    min-height:100vh;
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    text-align:center;
+}
+
+.ready-card{
+    width:100%;
+    max-width:650px;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:10px 16px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    font-size:11px;
+    letter-spacing:1.5px;
+
+    margin-bottom:25px;
+
+    color:#ffd0df;
+}
+
+.ready-card h1{
+
+    font-size:clamp(45px,12vw,85px);
+
+    line-height:1;
+
+    letter-spacing:-2px;
+
+    margin-bottom:22px;
+}
+
+.ready-card h1 span{
+    color:#ffb6d0;
+    font-style:italic;
+}
+
+.ready-card p{
+
+    max-width:430px;
+
+    margin:0 auto;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    color:rgba(255,255,255,.82);
+}
+
+
+/* BUTTON AREA */
+
+.choice-area{
+
+    position:relative;
+
+    margin-top:45px;
+
+    height:90px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+button{
+
+    border:none;
+
+    padding:16px 25px;
+
+    border-radius:100px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+}
+
+.yes-btn{
+
+    background:#ffc0d5;
+
+    color:#4a1730;
+
+    box-shadow:
+    0 10px 30px
+    rgba(255,130,180,.35);
+}
+
+.yes-btn:active{
+    transform:scale(.95);
+}
+
+.no-btn{
+
+    background:rgba(255,255,255,.16);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.2);
+}
+
+
+/* =================================
+   SCREEN 2 — BIRTHDAY
+================================= */
+
+#birthdayScreen{
+
+    display:none;
+
+    min-height:100vh;
+
+    width:100%;
+
+    padding:35px 22px;
+
+    animation:fadeIn .8s ease;
+}
+
+.birthday-content{
+
+    max-width:850px;
+
+    margin:auto;
+
+    min-height:90vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+.attention{
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    color:#ffc4d7;
+
+    margin-bottom:25px;
+}
+
+.birthday-title{
+
+    font-size:clamp(48px,12vw,100px);
+
+    line-height:.95;
+
+    letter-spacing:-3px;
+}
+
+.birthday-title .pink{
+
+    color:#ffb8d1;
+
+    font-style:italic;
+}
+
+.birthday-sub{
+
+    margin-top:30px;
+
+    max-width:500px;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    color:rgba(255,255,255,.85);
+}
+
+
+/* =================================
+   ENVELOPE
+================================= */
+
+.envelope-area{
+
+    margin-top:50px;
+}
+
+.open-text{
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+    color:#ffd0df;
+
+    margin-bottom:15px;
+
+    line-height:1.6;
+}
+
+.envelope{
+
+    width:min(340px,90vw);
+
+    height:220px;
+
+    position:relative;
+
+    cursor:pointer;
+
+    perspective:1000px;
+}
+
+.envelope-body{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:8px;
+
+    background:#e3a2bd;
+
+    box-shadow:
+    0 25px 50px
+    rgba(0,0,0,.35);
+}
+
+.envelope-flap{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:5;
+
+    transform-origin:top;
+
+    background:#d58aa9;
+
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        50% 57%
+    );
+
+    transition:
+    transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.small-paper{
+
+    position:absolute;
+
+    z-index:3;
+
+    left:7%;
+
+    bottom:15px;
+
+    width:86%;
+
+    height:185px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fffaf5;
+
+    color:#5b3141;
+
+    font-size:20px;
+
+    font-style:italic;
+
+    border-radius:3px;
+
+    transition:
+    transform 1.2s cubic-bezier(.2,.9,.2,1);
+}
+
+.envelope.open .envelope-flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .small-paper{
+    transform:translateY(-165px);
+}
+
+
+/* =================================
+   FULL LETTER
+================================= */
+
+#letter{
+
+    display:none;
+
+    max-width:720px;
+
+    margin:30px auto 70px;
+
+    padding:45px 28px;
+
+    background:#fffaf6;
+
+    color:#38252d;
+
+    border-radius:4px;
+
+    box-shadow:
+    0 25px 80px
+    rgba(0,0,0,.35);
+
+    animation:letterIn .8s ease;
+}
+
+.letter-tag{
+
+    color:#b96d8b;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    margin-bottom:35px;
+}
+
+#letter h2{
+
+    font-size:clamp(42px,10vw,75px);
+
+    line-height:1;
+
+    margin-bottom:40px;
+
+    color:#3c2630;
+}
+
+.letter-content{
+
+    font-size:15px;
+
+    line-height:1.9;
+
+    color:#604c54;
+}
+
+.letter-content p{
+    margin-bottom:25px;
+}
+
+.fun-box{
+
+    margin:35px 0;
+
+    padding:25px;
+
+    background:#fff0f5;
+
+    border-radius:15px;
+
+    line-height:2;
+
+    color:#704252;
+}
+
+.signature{
+
+    margin-top:45px;
+
+    font-size:22px;
+
+    font-style:italic;
+
+    color:#b56584;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes letterIn{
+
+    from{
+        opacity:0;
+        transform:translateY(50px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .ready-card h1{
+        letter-spacing:-1px;
+    }
+
+    .birthday-title{
+        letter-spacing:-1px;
+    }
+
+    #letter{
+        padding:35px 22px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+
+<!-- SCREEN 1 -->
+
+<section id="readyScreen">
+
+    <div class="ready-card">
+
+        <div class="badge">
+            🎀 OFFICIAL BIRTHDAY CHECKPOINT
+        </div>
+
+        <h1>
+            Anam...<br>
+            kya aap <span>tayyar</span> hain? 👀
+        </h1>
+
+        <p>
+            Aagay kuch bohat cute hai.<br>
+            Thori tareef bhi hai.<br>
+            Aur obviously thori si beizzati bhi. 😭🎀
+        </p>
+
+        <div class="choice-area">
+
+            <button
+                class="yes-btn"
+                onclick="startBirthday()">
+
+                YES, BILKUL 😭🎀
+
+            </button>
+
+            <button
+                class="no-btn"
+                id="noBtn">
+
+                NO 😐
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SCREEN 2 -->
+
+<section id="birthdayScreen">
+
+    <div class="birthday-content">
+
+        <div class="attention">
+            🚨 ATTENTION PLEASE 🚨
+        </div>
+
+        <h1 class="birthday-title">
+
+            aaj ek<br>
+
+            <span class="pink">
+                bohat special
+            </span><br>
+
+            larki ka<br>
+
+            birthday hai. 🎀
+
+        </h1>
+
+        <p class="birthday-sub">
+
+            Haan Anam. Hum tumhari hi baat kar rahe hain.
+            Itna surprised mat ho. 😭<br><br>
+
+            Aur haan, aaj officially tumhein
+            <b>main character banne ki full permission hai.</b>
+
+        </p>
+
+
+        <!-- ENVELOPE -->
+
+        <div class="envelope-area">
+
+            <div class="open-text">
+
+                💌 WARNING:<br>
+                Iske andar thori tareef hai,<br>
+                thori emotional bakwas hai,<br>
+                aur thori si beizzati bhi. 😭
+            </div>
+
+            <div
+                class="envelope"
+                id="envelope"
+                onclick="openLetter()">
+
+                <div class="envelope-body"></div>
+
+                <div class="small-paper">
+                    for Anam 🎀
+                </div>
+
+                <div class="envelope-flap"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LETTER -->
+
+    <article id="letter">
+
+        <div class="letter-tag">
+            18 SEPTEMBER · ANAM DAY™ 🎀
+        </div>
+
+        <h2>
+            Happy Birthday,<br>
+            Anam 🎀
+        </h2>
+
+
+        <div class="letter-content">
+
+            <p>
+                Aaj officially tumhara din hai. 😭🎂
+                Toh aaj tumhein full permission hai main character banne ki,
+                extra photos lene ki, cake ka best piece lene ki
+                aur har thori der baad logon ko remind karwane ki
+                ke “guys... it's my birthday btw.” 😭
+            </p>
+
+            <p>
+                Lekin jokes aside, main genuinely bohat lucky hoon
+                ke tum meri friend ho. Tum un logon mein se ho
+                jin ke saath normal si conversation bhi pata nahi
+                kese random nonsense mein convert ho jati hai. 😭
+            </p>
+
+
+            <div class="fun-box">
+
+                🎀 <b>THINGS THAT MAKE ANAM... ANAM:</b><br>
+
+                🌸 randomly adorable<br>
+                😭 occasionally pagal<br>
+                🎀 unnecessarily dramatic sometimes<br>
+                💌 surprisingly achi friend<br>
+                ✨ aur unfortunately... pretty bhi
+
+            </div>
+
+
+            <p>
+                Sach mein, tumhari apni ek alag vibe hai.
+                Aur mujhe genuinely lagta hai tum kabhi kabhi
+                realise nahi karti ke tumhari presence
+                dusron ke din ko kitna acha bana sakti hai.
+            </p>
+
+            <p>
+                Main hope karta hoon ke tumhara ye naya year
+                bohat saari hasi, achi memories, random adventures,
+                success aur woh sab kuch le kar aaye
+                jo tum secretly apne liye chahti ho. 🤍
+            </p>
+
+            <p>
+                Aur please... apni woh wali vibe kabhi lose mat karna.
+                Thori mature ho jana.
+                Lekin zyada nahi.
+                Warna boring ho jaogi. 😭
+            </p>
+
+            <p>
+                Happy Birthday once again, Anam. 🎀
+                Cake khao, photos lo, enjoy karo,
+                aur apna full main character moment jeeo.
+            </p>
+
+        </div>
+
+        <div class="signature">
+
+            — tumhara thora sa pagal,
+            lekin genuinely lucky friend 🤍
+
+        </div>
+
+    </article>
+
+</section>
+
+
+
+<script>
+
+/* NO BUTTON BHAGEGA 😭 */
+
+const noBtn =
+document.getElementById("noBtn");
+
+
+function moveNoButton(){
+
+    const padding = 20;
+
+    const buttonWidth =
+    noBtn.offsetWidth;
+
+    const buttonHeight =
+    noBtn.offsetHeight;
+
+
+    const maxX =
+    window.innerWidth -
+    buttonWidth -
+    padding;
+
+
+    const maxY =
+    window.innerHeight -
+    buttonHeight -
+    padding;
+
+
+    const x =
+    padding +
+    Math.random() *
+    (maxX - padding);
+
+
+    const y =
+    padding +
+    Math.random() *
+    (maxY - padding);
+
+
+    noBtn.style.position =
+    "fixed";
+
+    noBtn.style.left =
+    x + "px";
+
+    noBtn.style.top =
+    y + "px";
+
+    noBtn.style.zIndex =
+    "9999";
+}
+
+
+noBtn.addEventListener(
+    "mouseenter",
+   
